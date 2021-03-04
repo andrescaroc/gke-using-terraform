@@ -5,6 +5,7 @@ This repo explain how to create a Kubernetes cluster in GKE using terraform Infr
 - Set gcloud
 - Clone this repo
 - Update the `terraform.tvars` file
+- Use Terraform
 
 ## Prerequisites
 This repo requires you to have configured:
@@ -40,10 +41,29 @@ Replace the values in your terraform.tvars file with your `project_id` and `regi
 ```
 # terraform.tfvars
 project_id = "REPLACE_ME"
-region     = "us-central1"
+region     = "REPLACE_ME_TOO"
 ```
 You can find the project your `gcloud` is configured to with this command.
 ```
 gcloud config get-value project
 ```
 You can find a full list of gcloud regions [here.](https://cloud.google.com/compute/docs/regions-zones)
+
+## Use Terraform
+Initialize terraform, this will install the provider plugins:
+```
+terraform init
+```
+Before continue, make sure Compute Engine API and Kubernetes Engine API are enabled in your GCP console for your `project_id`, if not sure visit:
+```
+https://console.cloud.google.com/compute
+https://console.cloud.google.com/kubernetes
+```
+And verify it is not asking you to enable the respective API.
+
+Then, let terraform create the defined resources:
+```
+terraform apply
+```
+
+
